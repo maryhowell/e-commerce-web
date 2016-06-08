@@ -65,10 +65,19 @@ class ShopDBApp < Sinatra::Base
    erb :login
  end
 
- get '/' do
-  erb :userinfo
+ post '/userinfo' do
+   if User.find_by(password: params[:password])
+     erb :userinfo
+   else
+   redirect '/newuser'
+   end
  end
+
+ get '/newuser' do
+   erb :newuser
+ end
+
 
 end
 
-# ShopDBApp.run!
+ShopDBApp.run!
