@@ -77,6 +77,10 @@ class ShopDBApp < Sinatra::Base
    end
  end
 
+ post '/newuser' do
+   User.create(first_name: params[:first_name], last_name: params[:last_name], password: params[:password])
+ end
+
  get '/newuser' do
    erb :newuser
  end
@@ -84,7 +88,7 @@ class ShopDBApp < Sinatra::Base
  get '/items' do
    erb :items
  end
- 
+
 end
 
 ShopDBApp.run!
