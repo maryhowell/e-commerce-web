@@ -65,6 +65,10 @@ class ShopDBApp < Sinatra::Base
    erb :login
  end
 
+ get '/userinfo' do
+   erb :userinfo
+ end
+
  post '/userinfo' do
    if User.find_by(password: params[:password])
      erb :userinfo
@@ -77,7 +81,10 @@ class ShopDBApp < Sinatra::Base
    erb :newuser
  end
 
-
+ get '/items' do
+   erb :items
+ end
+ 
 end
 
 ShopDBApp.run!
