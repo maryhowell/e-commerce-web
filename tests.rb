@@ -89,7 +89,7 @@ class AppTests < Minitest::Test
     user = make_existing_user
     header "Authorization", user.password
 
-    item.created_by = user.id
+    item.created_by = user
     item.save!
     r = delete "/items/#{item.id}"
 

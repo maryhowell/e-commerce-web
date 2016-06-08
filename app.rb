@@ -33,7 +33,7 @@ class ShopDBApp < Sinatra::Base
   end
 
   post "/items" do
-    Item.create(description: params[:description], price: params[:price], created_by: user.id)
+    Item.create(description: params[:description], price: params[:price], created_by_id: user)
   end
 
   post "/items/:id/buy" do
@@ -45,7 +45,7 @@ class ShopDBApp < Sinatra::Base
   end
 
   delete "/items/:id" do
-    if Item.find(params[:id]).created_by == user.id
+    if Item.find(params[:id]).created_by_id == user.id
       Item.delete_all(params[:id])
       200
     else
@@ -61,5 +61,14 @@ class ShopDBApp < Sinatra::Base
     json purchases
   end
 
+  get '/' do
+   erb :login
+ end
+
+ get '/' do
+  erb :userinfo
+ end
 
 end
+
+# ShopDBApp.run!
